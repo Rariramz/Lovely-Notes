@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoteItem from "./NoteItem";
 import "./Notes.css";
 import { FiPlus } from "react-icons/fi";
@@ -9,6 +9,8 @@ import img2 from "../../images/img-2.jpg";
 import img3 from "../../images/img-3.jpg";
 import img4 from "../../images/img-4.jpg";
 import img8 from "../../images/img-8.jpg";
+import { FiX } from "react-icons/fi";
+import Minigrid from "minigrid";
 
 const Notes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +18,7 @@ const Notes = () => {
     {
       src: { img2 },
       header: "Note 1",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       tag: "Adventure",
     },
     {
@@ -34,13 +36,13 @@ const Notes = () => {
     {
       src: { img8 },
       header: "Note 4",
-      body: "Excepteur sint",
+      body: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       tag: "Adventure",
     },
     {
       src: { img9 },
       header: "Note 5",
-      body: "occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       tag: "Adventure",
     },
     {
@@ -54,25 +56,47 @@ const Notes = () => {
   function modalClosed() {
     setIsModalOpen(false);
   }
-
   function newNote() {
     setIsModalOpen(false);
   }
 
+  useEffect(() => {
+    const grid = new Minigrid({
+      container: ".notes-container",
+      item: ".note",
+      gutter: 20,
+    });
+    grid.mount();
+  }, []);
+
   return (
-    <div className="notes">
-      {!isModalOpen && (
-        <button className="add-button" onClick={() => setIsModalOpen(true)}>
-          ADD NOTE <FiPlus />
-        </button>
-      )}
-      {isModalOpen && <Form onCancel={modalClosed} onDone={newNote} />}
-      <div className="notes-container">
-        {notes.map((n) => (
-          <NoteItem src={n.src} header={n.header} body={n.body} tag={n.tag} />
-        ))}
+    <>
+      <div className="notes">
+        {!isModalOpen && (
+          <button className="add-button" onClick={() => setIsModalOpen(true)}>
+            ADD NOTE <FiPlus />
+          </button>
+        )}
+        {isModalOpen && <Form onCancel={modalClosed} onDone={newNote} />}
+
+        <div className="notes-container">
+          {/* {notes.map((n) => (
+            <NoteItem src={n.src} header={n.header} body={n.body} tag={n.tag} />
+          ))} */}
+          {notes.map((n) => (
+            <div className="note">
+              <button className="note-buttonDel" type="submit">
+                <FiX />
+              </button>
+              <div className="note-info">
+                <h1>{n.header}</h1>
+                <h5 className="note-text">{n.body}</h5>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
