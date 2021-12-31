@@ -7,7 +7,8 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <Link to="/" className="navbar-logo">
-        VITA <FaFeatherAlt />
+        VITA
+        <FaFeatherAlt />
       </Link>
       <div className="navbar-search">
         <input

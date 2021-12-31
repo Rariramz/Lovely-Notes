@@ -14,7 +14,8 @@ const Footer = () => {
   return (
     <div className="footer">
       <Link to="/" className="footer-logo">
-        VITA <FaFeatherAlt />
+        VITA
+        <FaFeatherAlt />
       </Link>
       <div className="social-media">
         <Link

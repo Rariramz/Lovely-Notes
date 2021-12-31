@@ -16,7 +16,7 @@
 .footer-logo {
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #fff;
 }
 
@@ -29,5 +29,5 @@
 .social-icon-link {
   color: #fff;
   font-size: 40px;
-  margin: 10px;
+  margin: 3%;
 }

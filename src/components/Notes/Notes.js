@@ -53,21 +53,50 @@ const Notes = () => {
     },
   ];
 
-  function modalClosed() {
-    setIsModalOpen(false);
-  }
-  function newNote() {
-    setIsModalOpen(false);
-  }
+  const deleteNote = (header) => {
+    //here will be id instead of header
+    //delete note
+  };
+  const editNote = (header) => {
+    //edit note
+  };
 
-  useEffect(() => {
-    const grid = new Minigrid({
-      container: ".notes-container",
-      item: ".note",
-      gutter: 20,
-    });
-    grid.mount();
-  }, []);
+  const modalClosed = () => {
+    setIsModalOpen(false);
+  };
+  const newNote = () => {
+    setIsModalOpen(false);
+    //add new note
+  };
+
+  // useEffect(() => {
+  //   const grid = new Minigrid({
+  //     container: ".notes-container",
+  //     item: ".note",
+  //     gutter: 20,
+  //   });
+  //   grid.mount();
+  // }, []);
+
+  (function () {
+    var grid;
+    function init() {
+      grid = new Minigrid({
+        container: ".notes-container",
+        item: ".note",
+        gutter: 12,
+      });
+      grid.mount();
+    }
+
+    // mount
+    function update() {
+      grid.mount();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+    window.addEventListener("resize", update);
+  })();
 
   return (
     <>
@@ -84,8 +113,12 @@ const Notes = () => {
             <NoteItem src={n.src} header={n.header} body={n.body} tag={n.tag} />
           ))} */}
           {notes.map((n) => (
-            <div className="note">
-              <button className="note-buttonDel" type="submit">
+            <div className="note" onClick={() => editNote(n.header)}>
+              <button
+                className="note-buttonDel"
+                type="submit"
+                onClick={() => deleteNote(n.header)}
+              >
                 <FiX />
               </button>
               <div className="note-info">
