@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 40px;
+
+  background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+  background-color: transparent;
+  height: 80px;
+  position: relative;
+  z-index: 999;
+  bottom: 0;
+}
+
+.footer-logo {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.social-media {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.social-icon-link {
+  color: #fff;
+  font-size: 40px;
+  margin: 10px;
+}
